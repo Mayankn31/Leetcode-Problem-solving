@@ -1,13 +1,9 @@
 class Solution {
 public:
-    void f(vector<int>&nums,int i){
-        if(i>=nums.size()) return;
-        int cur=nums[nums[i]];
-        f(nums,i+1);
-        nums[i]=cur;
-    }
     vector<int> buildArray(vector<int>& nums) {
-        f(nums,0);
+        int n=nums.size();
+        for(int i=0;i<n;i++) nums[i]=nums[i]+n*(nums[nums[i]]%n);
+        for(int i=0;i<n;i++) nums[i]/=n;
         return nums;
     }
 };
