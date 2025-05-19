@@ -1,13 +1,15 @@
 class Solution {
 public:
     string triangleType(vector<int>& nums) {
-        if(nums[0]+nums[1]<=nums[2] || nums[1]+nums[2]<=nums[0] || nums[0]+nums[2]<=nums[1]){
+        sort(nums.begin(), nums.end());
+        if (nums[0]+nums[1]<=nums[2]) {
             return "none";
+        } else if (nums[0]==nums[2]) {
+            return "equilateral";
+        } else if (nums[0]==nums[1] || nums[1]==nums[2]) {
+            return "isosceles";
+        } else {
+            return "scalene";
         }
-        unordered_map<int,int>mp;
-        for(int& x:nums) mp[x]++;
-        if(mp.size()==1) return "equilateral";
-        else if(mp.size()==2) return "isosceles";
-        return "scalene";
     }
 };
